@@ -6,6 +6,7 @@
 - `sms` Send text via SMS
 - `telegram` [Telegram](https://telegram.org)
 - `whatsapp` [WhatsApp](http://www.whatsapp.com)
+- Email
 
 ## Note for Telegram Instant View
 

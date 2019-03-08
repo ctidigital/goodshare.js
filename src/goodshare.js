@@ -42,6 +42,7 @@ import { SMS } from "./providers/SMS";
 import { Skype } from "./providers/Skype";
 import { Telegram } from "./providers/Telegram";
 import { WhatsApp } from "./providers/WhatsApp";
+import { Email } from "./providers/Email";
 
 const providers = [
   // Import social networks providers with share counter.
@@ -60,6 +61,7 @@ const providers = [
   Skype,
   Telegram,
   WhatsApp,
+  Email
 ];
 
 class Goodshare {
