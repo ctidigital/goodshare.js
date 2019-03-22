@@ -1,6 +1,6 @@
 /**
- *  Vic Shóstak <koddr.me@gmail.com>
- *  Copyright (c) 2018 True web artisans https://webartisans.org
+ *  Vic Shóstak <vikkyshostak@gmail.com>
+ *  Copyright (c) 2019 True web artisans https://truewebartisans.com
  *  http://opensource.org/licenses/MIT The MIT License (MIT)
  *
  *  goodshare.js
@@ -31,7 +31,8 @@ export class Twitter extends ProviderMixin {
       callback: this.callback,
       share_url: share_url,
       windowTitle: "Share this",
-      windowOptions: "width=640,height=480,location=no,toolbar=no,menubar=no"
+      windowWidth: 640,
+      windowHeight: 480
     };
   }
 

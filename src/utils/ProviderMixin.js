@@ -21,38 +21,26 @@ export class ProviderMixin {
     this.updateInstanceId();
   }
 
-  // handler wrapper for cb manipulations
-  eventHandler(event, { share_url, windowTitle, windowOptions }) {
+  // Handler wrapper for callback manipulations
+  eventHandler(event, { share_url, windowTitle, windowWidth, windowHeight }) {
     event.preventDefault();
 
-    // Turn the string of window options into an object we can destructure to get
-    // the width and the height.
-    const windowOptionsObject = windowOptions
-      .replace(/(^\?)/, "")
-      .split(",")
-      .map(
-        function(n) {
-          return (n = n.split("=")), (this[n[0]] = n[1]), this;
-        }.bind({})
-      )[0];
-    const { width, height } = windowOptionsObject;
-
-    // https://github.com/BrandwatchLtd/twitter-intents/blob/master/twitter-intents.js
-    const screenTop = window.screenTop;
-    const screenLeft = window.screenLeft;
-    const windowWidth =
+    // Calc top & left window position
+    const screenWidth =
       window.outerWidth || window.document.documentElement.offsetWidth;
-    const windowHeight =
+    const screenHeight =
       window.outerHeight || window.document.documentElement.offsetHeight;
-    let left = screenLeft;
-    let top = screenTop;
+    const screenTop = Math.round(screenHeight / 2 - windowHeight / 2);
+    const screenLeft = Math.round(screenWidth / 2 - windowWidth / 2);
 
-    left += Math.round(windowWidth / 2 - width / 2);
-    if (windowHeight > height) {
-      top += Math.round(windowHeight / 2 - height / 2);
-    }
+    // Set window size & window position
+    const windowSize = `width=${windowWidth},height=${windowHeight}`;
+    const windowPosition = `left=${screenLeft},top=${screenTop}`;
 
-    windowOptions = `${windowOptions},left=${left},top=${top}`;
+    // Build full window options
+    const windowOptions = `${windowSize},${windowPosition},location=no,toolbar=no,menubar=no`;
+
+    // Build window open object
     const windowObject = window.open(share_url, windowTitle, windowOptions);
 
     const windowCloseChecker = setInterval(() => {
@@ -89,13 +77,8 @@ export class ProviderMixin {
 
   // Get instance
   getInstance() {
-    if (typeof this.shareWindow === "function") {
-      this.shareWindow();
-    }
-
-    if (typeof this.getCounter === "function") {
-      this.getCounter();
-    }
+    if (typeof this.shareWindow === "function") this.shareWindow();
+    if (typeof this.getCounter === "function") this.getCounter();
 
     return this;
   }
