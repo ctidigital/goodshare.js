@@ -24,7 +24,7 @@ export class Email extends ProviderMixin {
     const title = item.dataset.title
       ? encodeURIComponent(item.dataset.title)
       : this.title;
-    const share_url = `mailto:example@example.com?subject=${title}&body=${url}`;
+    const share_url = `mailto:?subject=${title}&body=${url}`;
 
     return {
       callback: this.callback,
