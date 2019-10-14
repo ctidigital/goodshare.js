@@ -22,8 +22,13 @@ export class ProviderMixin {
   }
 
   // Handler wrapper for callback manipulations
-  eventHandler(event, { share_url, windowTitle, windowWidth, windowHeight }) {
+  eventHandler(event, { share_url, windowTitle, windowWidth, windowHeight, useLocation }) {
     event.preventDefault();
+
+    if (useLocation) {
+      window.top.location = share_url;
+      return;
+    }
 
     // Calc top & left window position
     const screenWidth =

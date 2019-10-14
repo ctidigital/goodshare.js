@@ -29,8 +29,7 @@ export class Email extends ProviderMixin {
     return {
       callback: this.callback,
       share_url: share_url,
-      windowTitle: "Share this",
-      windowOptions: "width=640,height=480,location=no,toolbar=no,menubar=no"
+      useLocation: true
     };
   }
 
