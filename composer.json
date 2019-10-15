@@ -1,0 +1,6 @@
+{
+  "name": "ctidigital/goodshare.js",
+  "type": "npm-asset",
+  "description": "A fork of koddr/goodshare.js, but with non-English speaking services removed to keep file weight down",
+  "minimum-stability": "dev"
+}
