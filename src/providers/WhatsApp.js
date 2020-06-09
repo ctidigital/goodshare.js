@@ -21,7 +21,7 @@ export class WhatsApp extends ProviderMixin {
     const url = item.dataset.url
       ? encodeURIComponent(item.dataset.url)
       : this.url;
-    const share_url = `https://wa.me/?text=${url}`;
+    const share_url = `https://api.whatsapp.com/send?text=${url}`;
 
     return {
       callback: this.callback,
